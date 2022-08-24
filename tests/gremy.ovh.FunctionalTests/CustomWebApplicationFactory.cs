@@ -10,61 +10,61 @@ namespace gremy.ovh.FunctionalTests;
 
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
-  /// <summary>
-  /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
-  /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
-  /// </summary>
-  /// <param name="builder"></param>
-  /// <returns></returns>
-  protected override IHost CreateHost(IHostBuilder builder)
-  {
-    builder.UseEnvironment("Development"); // will not send real emails
-    var host = builder.Build();
-    host.Start();
-
-    // Get service provider.
-    var serviceProvider = host.Services;
-
-    // Create a scope to obtain a reference to the database
-    // context (AppDbContext).
-    using (var scope = serviceProvider.CreateScope())
+    /// <summary>
+    /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
+    /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <returns></returns>
+    protected override IHost CreateHost(IHostBuilder builder)
     {
-      var scopedServices = scope.ServiceProvider;
-      var db = scopedServices.GetRequiredService<AppDbContext>();
+        builder.UseEnvironment("Development"); // will not send real emails
+        var host = builder.Build();
+        host.Start();
 
-      var logger = scopedServices
-          .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+        // Get service provider.
+        var serviceProvider = host.Services;
 
-      // Ensure the database is created.
-      db.Database.EnsureCreated();
+        // Create a scope to obtain a reference to the database
+        // context (AppDbContext).
+        using (var scope = serviceProvider.CreateScope())
+        {
+            var scopedServices = scope.ServiceProvider;
+            var db = scopedServices.GetRequiredService<AppDbContext>();
+
+            var logger = scopedServices
+                .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+
+            // Ensure the database is created.
+            db.Database.EnsureCreated();
+        }
+
+        return host;
     }
 
-    return host;
-  }
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder
+            .ConfigureServices(services =>
+            {
+                // Remove the app's ApplicationDbContext registration.
+                var descriptor = services.SingleOrDefault(
+            d => d.ServiceType ==
+                typeof(DbContextOptions<AppDbContext>));
 
-  protected override void ConfigureWebHost(IWebHostBuilder builder)
-  {
-    builder
-        .ConfigureServices(services =>
-        {
-          // Remove the app's ApplicationDbContext registration.
-          var descriptor = services.SingleOrDefault(
-          d => d.ServiceType ==
-              typeof(DbContextOptions<AppDbContext>));
+                if (descriptor != null)
+                {
+                    services.Remove(descriptor);
+                }
 
-          if (descriptor != null)
-          {
-            services.Remove(descriptor);
-          }
+                // This should be set for each individual test run
+                var inMemoryCollectionName = Guid.NewGuid().ToString();
 
-          // This should be set for each individual test run
-          string inMemoryCollectionName = Guid.NewGuid().ToString();
-
-          // Add ApplicationDbContext using an in-memory database for testing.
-          services.AddDbContext<AppDbContext>(options =>
-          {
-            options.UseInMemoryDatabase(inMemoryCollectionName);
-          });
-        });
-  }
+                // Add ApplicationDbContext using an in-memory database for testing.
+                services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase(inMemoryCollectionName);
+            });
+            });
+    }
 }
