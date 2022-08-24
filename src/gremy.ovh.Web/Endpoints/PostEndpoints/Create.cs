@@ -1,0 +1,42 @@
+﻿using Ardalis.ApiEndpoints;
+using gremy.ovh.Core.ProjectAggregate;
+using gremy.ovh.SharedKernel.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+
+namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+
+public class Create : EndpointBaseAsync
+  .WithRequest<CreatePostRequest>
+  .WithActionResult<CreatePostResponse>
+{
+  private readonly IRepository<Post> _repository;
+
+  public Create(IRepository<Post> repository)
+  {
+    _repository = repository;
+  }
+
+  [HttpPost("/Posts")]
+  [SwaggerOperation(
+    Summary = "Creates a new Post",
+    Description = "Creates a new Post",
+    OperationId = "Post.Create",
+    Tags = new[] { "ProjectEndpoints" })
+  ]
+  public override async Task<ActionResult<CreatePostResponse>> HandleAsync(
+    CreatePostRequest request,
+    CancellationToken cancellationToken = new())
+  {
+    if (request is null)
+    {
+      return BadRequest();
+    }
+
+    var newPost = new Post(request.Title, request.Body);
+    var createdItem = await _repository.AddAsync(newPost, cancellationToken);
+    var response = new CreatePostResponse(createdItem.Id, createdItem.Title, createdItem.Body);
+
+    return Ok(response);
+  }
+}
