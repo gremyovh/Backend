@@ -17,7 +17,9 @@ public class Create : EndpointBaseAsync
     _repository = repository;
   }
 
-  [HttpPost("/Posts")]
+  [HttpPost(CreatePostRequest.Route)]
+  [ProducesResponseType(StatusCodes.Status400BadRequest)]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
     Summary = "Creates a new Post",
     Description = "Creates a new Post",
@@ -28,14 +30,20 @@ public class Create : EndpointBaseAsync
     CreatePostRequest request,
     CancellationToken cancellationToken = new())
   {
-    if (request is null)
-    {
-      return BadRequest();
-    }
+    if (request is null) return BadRequest();
 
     var newPost = new Post(request.Title, request.Body);
     var createdItem = await _repository.AddAsync(newPost, cancellationToken);
-    var response = new CreatePostResponse(createdItem.Id, createdItem.Title, createdItem.Body);
+
+    var response = new CreatePostResponse
+    {
+      Post = new PostRecord
+      (
+        createdItem.Id,
+        createdItem.Title,
+        createdItem.Body
+      ),
+    };
 
     return Ok(response);
   }

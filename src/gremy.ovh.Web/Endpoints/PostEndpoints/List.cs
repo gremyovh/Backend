@@ -18,6 +18,7 @@ public class List : EndpointBaseAsync
   }
 
   [HttpGet("/Posts")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
     Summary = "Gets a list of all Posts",
       Description = "Gets a list of all Posts",
