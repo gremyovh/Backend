@@ -2,7 +2,7 @@
 
 namespace gremy.ovh.Web.Endpoints.PostEndpoints;
 
-public class CreatePostResponse
+public class GetPostByIdResponse
 {
   public PostRecord Post { get; set; }
 }
