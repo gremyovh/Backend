@@ -29,6 +29,7 @@ public class List : EndpointBaseAsync
     CancellationToken cancellationToken = new())
   {
     var posts = await _repository.ListAsync(cancellationToken);
+
     var response = new PostListResponse
     {
       Posts = posts

@@ -1,7 +1,6 @@
 ﻿using Ardalis.ApiEndpoints;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.SharedKernel.Interfaces;
-using gremy.ovh.Core.ProjectAggregate.Specifications.PostSpec;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -34,8 +33,7 @@ public class GetById : EndpointBaseAsync
   {
     if (request is null) return BadRequest();
 
-    var spec = new PostByIdSpec(request.PostId);
-    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
+    var entity = await _repository.GetByIdAsync(request.PostId, cancellationToken);
     if (entity is null) return NotFound();
 
     var response = new GetPostByIdResponse
