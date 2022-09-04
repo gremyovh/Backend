@@ -9,6 +9,6 @@ public class UpdatePostRequest
   public const string Route = "/Posts";
 
   [Required] public int PostId { get; set; }
-  [Required] public string Title { get; set; }
-  [Required] public string Body { get; set; }
+  [Required(AllowEmptyStrings = false)] public string Title { get; set; }
+  [Required(AllowEmptyStrings = false)] public string Body { get; set; }
 }

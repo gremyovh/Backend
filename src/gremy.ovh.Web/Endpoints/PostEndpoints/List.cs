@@ -8,7 +8,7 @@ namespace gremy.ovh.Web.Endpoints.PostEndpoints;
 
 public class List : EndpointBaseAsync
   .WithoutRequest
-  .WithActionResult<PostListResponse>
+  .WithActionResult<ListPostResponse>
 {
   private readonly IReadRepository<Post> _repository;
 
@@ -17,7 +17,7 @@ public class List : EndpointBaseAsync
     _repository = repository;
   }
 
-  [HttpGet("/Posts")]
+  [HttpGet(ListPostRequest.Route)]
   [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
     Summary = "Gets a list of all Posts",
@@ -25,12 +25,12 @@ public class List : EndpointBaseAsync
       OperationId = "Post.List",
       Tags = new[] { "ProjectEndpoints" })
   ]
-  public override async Task<ActionResult<PostListResponse>> HandleAsync(
+  public override async Task<ActionResult<ListPostResponse>> HandleAsync(
     CancellationToken cancellationToken = new())
   {
     var posts = await _repository.ListAsync(cancellationToken);
 
-    var response = new PostListResponse
+    var response = new ListPostResponse
     {
       Posts = posts
       .Select(post => new PostRecord(post.Id, post.Title, post.Body))

@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Handlers\" />
-    <Folder Include="Core\ProjectAggregate\" />
     <Folder Include="Core\Services\" />
     <Folder Include="Core\Specifications\" />
   </ItemGroup>
