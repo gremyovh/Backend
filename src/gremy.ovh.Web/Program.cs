@@ -4,6 +4,7 @@ using Autofac.Extensions.DependencyInjection;
 using gremy.ovh.Core;
 using gremy.ovh.Infrastructure;
 using gremy.ovh.Infrastructure.Data;
+using gremy.ovh.Web;
 using Microsoft.OpenApi.Models;
 using Serilog;
 

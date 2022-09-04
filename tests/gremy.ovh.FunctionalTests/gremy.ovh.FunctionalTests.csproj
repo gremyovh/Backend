@@ -29,10 +29,4 @@
     <ProjectReference Include="..\gremy.ovh.UnitTests\gremy.ovh.UnitTests.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApiEndpoints\" />
-    <Folder Include="ControllerApis\" />
-    <Folder Include="ControllerViews\" />
-  </ItemGroup>
-
 </Project>

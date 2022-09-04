@@ -19,7 +19,7 @@ public class Create : EndpointBaseAsync
 
   [HttpPost(CreatePostRequest.Route)]
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
-  [ProducesResponseType(StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status201Created)]
   [SwaggerOperation(
     Summary = "Creates a new Post",
     Description = "Creates a new Post",
@@ -45,6 +45,6 @@ public class Create : EndpointBaseAsync
       ),
     };
 
-    return Ok(response);
+    return Created(CreatePostRequest.Route, response);
   }
 }

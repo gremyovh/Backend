@@ -1,10 +1,13 @@
 ﻿using Ardalis.GuardClauses;
 using gremy.ovh.SharedKernel;
 using gremy.ovh.SharedKernel.Interfaces;
+using Newtonsoft.Json;
 
 namespace gremy.ovh.Core.ProjectAggregate;
 public class Post : EntityBase, IAggregateRoot
 {
+  [JsonProperty(PropertyName = "PostId")]
+  public override int Id { get; set; }
   public string Title { get; set; }
   public string Body { get; set; }
   public DateTime CreationDate { get; }

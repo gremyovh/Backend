@@ -18,7 +18,6 @@ public class Delete : EndpointBaseAsync
   }
 
   [HttpDelete(DeletePostRequest.Route)]
-  [ProducesResponseType(StatusCodes.Status400BadRequest)]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status204NoContent)]
   [SwaggerOperation(
@@ -31,8 +30,6 @@ public class Delete : EndpointBaseAsync
     [FromRoute] DeletePostRequest request,
     CancellationToken cancellationToken = new())
   {
-    if (request is null) return BadRequest();
-
     var postToDelete = await _repository.GetByIdAsync(request.PostId, cancellationToken);
     if (postToDelete is null) return NotFound();
 

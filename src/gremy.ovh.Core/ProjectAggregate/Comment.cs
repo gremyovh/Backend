@@ -1,8 +1,11 @@
 ﻿using gremy.ovh.SharedKernel;
+using Newtonsoft.Json;
 
 namespace gremy.ovh.Core.ProjectAggregate;
 public class Comment : EntityBase
 {
+  [JsonProperty(PropertyName = "CommentId")]
+  public override int Id { get; set; }
   public DateTime CreationDate { get; set; }
   public string Title { get; set; }
   public string Body { get; set; }

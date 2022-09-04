@@ -7,8 +7,8 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace gremy.ovh.Web.Endpoints.PostEndpoints;
 
 public class GetById : EndpointBaseAsync
-  .WithRequest<GetPostByIdRequest>
-  .WithActionResult<GetPostByIdResponse>
+  .WithRequest<GetByIdPostRequest>
+  .WithActionResult<GetByIdPostResponse>
 {
   private readonly IRepository<Post> _repository;
 
@@ -17,8 +17,7 @@ public class GetById : EndpointBaseAsync
     _repository = repository;
   }
 
-  [HttpGet(GetPostByIdRequest.Route)]
-  [ProducesResponseType(StatusCodes.Status400BadRequest)]
+  [HttpGet(GetByIdPostRequest.Route)]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
@@ -27,16 +26,14 @@ public class GetById : EndpointBaseAsync
       OperationId = "Post.Get",
       Tags = new[] { "ProjectEndpoints" })
   ]
-  public override async Task<ActionResult<GetPostByIdResponse>> HandleAsync(
-    [FromRoute] GetPostByIdRequest request,
+  public override async Task<ActionResult<GetByIdPostResponse>> HandleAsync(
+    [FromRoute] GetByIdPostRequest request,
     CancellationToken cancellationToken = new())
   {
-    if (request is null) return BadRequest();
-
     var entity = await _repository.GetByIdAsync(request.PostId, cancellationToken);
     if (entity is null) return NotFound();
 
-    var response = new GetPostByIdResponse
+    var response = new GetByIdPostResponse
     {
       Post = new PostRecord
       (
