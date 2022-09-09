@@ -5,6 +5,7 @@ using gremy.ovh.Core;
 using gremy.ovh.Infrastructure;
 using gremy.ovh.Infrastructure.Data;
 using gremy.ovh.Web;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -14,7 +15,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
-string connectionString = builder.Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
 
 builder.Services.AddDbContext(connectionString);
 
@@ -87,8 +88,7 @@ using (var scope = app.Services.CreateScope())
   try
   {
     var context = services.GetRequiredService<AppDbContext>();
-    //                    context.Database.Migrate();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
   }
   catch (Exception ex)
   {

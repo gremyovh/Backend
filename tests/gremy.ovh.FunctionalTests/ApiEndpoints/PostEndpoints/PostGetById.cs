@@ -1,4 +1,5 @@
-﻿using Ardalis.HttpClientTestExtensions;
+﻿using System.Net;
+using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Web;
 using gremy.ovh.Web.Endpoints.PostEndpoints;
 using Xunit;
@@ -18,7 +19,9 @@ public class PostGetById : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   [Fact]
   public async Task ReturnNotFoundGetById()
   {
-    _ = await _client.GetAndEnsureNotFoundAsync(GetByIdPostRequest.BuildRoute(0));
+    var response = await _client.GetAndEnsureNotFoundAsync(GetByIdPostRequest.BuildRoute(0));
+
+    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
   }
 
   [Fact]

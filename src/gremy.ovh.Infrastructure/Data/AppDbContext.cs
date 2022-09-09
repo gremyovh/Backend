@@ -8,43 +8,45 @@ namespace gremy.ovh.Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {
-    private readonly IDomainEventDispatcher? _dispatcher;
+  private readonly IDomainEventDispatcher? _dispatcher;
 
-    public AppDbContext(DbContextOptions<AppDbContext> options,
-      IDomainEventDispatcher? dispatcher)
-        : base(options)
-    {
-        _dispatcher = dispatcher;
-    }
+  public AppDbContext(DbContextOptions<AppDbContext> options,
+    IDomainEventDispatcher? dispatcher)
+      : base(options)
+  {
+    _dispatcher = dispatcher;
+  }
 
-    public DbSet<Post> Posts => Set<Post>();
+  public DbSet<Post> Posts => Set<Post>();
+  public DbSet<Comment> Comments => Set<Comment>();
+  public DbSet<ContentData> ContentData => Set<ContentData>();
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+    base.OnModelCreating(modelBuilder);
+    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+  }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-    {
-        var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+  {
+    var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-        // ignore events if no dispatcher provided
-        if (_dispatcher == null) return result;
+    // ignore events if no dispatcher provided
+    if (_dispatcher == null) return result;
 
-        // dispatch events only if save was successful
-        var entitiesWithEvents = ChangeTracker.Entries<EntityBase>()
-            .Select(e => e.Entity)
-            .Where(e => e.DomainEvents.Any())
-            .ToArray();
+    // dispatch events only if save was successful
+    var entitiesWithEvents = ChangeTracker.Entries<EntityBase>()
+        .Select(e => e.Entity)
+        .Where(e => e.DomainEvents.Any())
+        .ToArray();
 
-        await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
+    await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
 
-        return result;
-    }
+    return result;
+  }
 
-    public override int SaveChanges()
-    {
-        return SaveChangesAsync().GetAwaiter().GetResult();
-    }
+  public override int SaveChanges()
+  {
+    return SaveChangesAsync().GetAwaiter().GetResult();
+  }
 }

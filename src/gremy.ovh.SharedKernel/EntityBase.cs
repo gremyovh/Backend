@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace gremy.ovh.SharedKernel;
 
@@ -8,7 +7,7 @@ public abstract class EntityBase
 {
   public virtual int Id { get; set; }
 
-  private List<DomainEventBase> _domainEvents = new();
+  private readonly List<DomainEventBase> _domainEvents = new();
   [NotMapped]
   public IEnumerable<DomainEventBase> DomainEvents => _domainEvents.AsReadOnly();
 

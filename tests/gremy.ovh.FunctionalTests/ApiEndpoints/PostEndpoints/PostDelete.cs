@@ -1,4 +1,5 @@
-﻿using Ardalis.HttpClientTestExtensions;
+﻿using System.Net;
+using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Web;
 using gremy.ovh.Web.Endpoints.PostEndpoints;
 using Xunit;
@@ -18,12 +19,16 @@ public class PostDelete : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   [Fact]
   public async Task ReturnNotFoundDelete()
   {
-    _ = await _client.DeleteAndEnsureNotFoundAsync(DeletePostRequest.BuildRoute(0));
+    var response = await _client.DeleteAndEnsureNotFoundAsync(DeletePostRequest.BuildRoute(0));
+
+    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
   }
 
   [Fact]
   public async Task ReturnDeletedDelete()
   {
-    _ = await _client.DeleteAndEnsureNoContentAsync(DeletePostRequest.BuildRoute(SeedData.TestPost2.Id));
+    var response = await _client.DeleteAndEnsureNoContentAsync(DeletePostRequest.BuildRoute(SeedData.TestPost2.Id));
+
+    Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
   }
 }

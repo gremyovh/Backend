@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.Web;
@@ -22,9 +23,11 @@ public class PostCreate : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   public async Task ReturnBadRequestCreate()
   {
     var post = new Post("Test project title", string.Empty);
-    _ = await _client.PostAndEnsureBadRequestAsync(
+    var response = await _client.PostAndEnsureBadRequestAsync(
       CreatePostRequest.Route,
       new StringContent(JsonConvert.SerializeObject(post), Encoding.UTF8, "application/json"));
+
+    Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
   }
 
   [Fact]
