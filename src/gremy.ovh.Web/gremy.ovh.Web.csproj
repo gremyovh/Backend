@@ -8,7 +8,12 @@
     <WebProjectMode>true</WebProjectMode>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <CodeAnalysisRuleSet>..\..\.sonarlint\gremyovh_backend_aylrnyeqhpstf5rhvfivcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\gremyovh_backend_aylrnyeqhpstf5rhvfiv\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" />
