@@ -1,0 +1,12 @@
+{
+  "ServerUri": "https://sonarqube.gremy.ovh/",
+  "Organization": null,
+  "ProjectKey": "gremyovh_Backend_AYLRnYEqHPsTf5RHvFiv",
+  "ProjectName": "Backend",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AYHZputC95x4GXp-TLBE",
+      "ProfileTimestamp": "2022-08-16T23:53:22Z"
+    }
+  }
+}
