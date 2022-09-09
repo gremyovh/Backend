@@ -1,4 +1,6 @@
-﻿namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+﻿#nullable disable
+
+namespace gremy.ovh.Web.Endpoints.PostEndpoints;
 
 public class ListPostRequest
 {

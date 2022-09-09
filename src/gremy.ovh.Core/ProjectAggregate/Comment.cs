@@ -6,9 +6,9 @@ public class Comment : EntityBase
 {
   [JsonProperty(PropertyName = "CommentId")]
   public override int Id { get; set; }
-  public DateTime CreationDate { get; set; }
   public string Title { get; set; }
   public string Body { get; set; }
+  public DateTime CreationDate { get; }
   public Post Post { get; set; }
 
   public Comment(string title, string body)

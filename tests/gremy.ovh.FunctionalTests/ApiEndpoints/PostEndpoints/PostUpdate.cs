@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.Web;
@@ -22,9 +23,11 @@ public class PostUpdate : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   public async Task ReturnBadRequestUpdate()
   {
     var post = new Post("Test rename title", string.Empty);
-    _ = await _client.PutAndEnsureBadRequestAsync(
+    var response = await _client.PutAndEnsureBadRequestAsync(
       UpdatePostRequest.Route,
       new StringContent(JsonConvert.SerializeObject(post), Encoding.UTF8, "application/json"));
+
+    Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
   }
 
   [Fact]
@@ -34,9 +37,11 @@ public class PostUpdate : IClassFixture<CustomWebApplicationFactory<WebMarker>>
     {
       Id = 0,
     };
-    _ = await _client.PutAndEnsureNotFoundAsync(
+    var response = await _client.PutAndEnsureNotFoundAsync(
       UpdatePostRequest.Route,
       new StringContent(JsonConvert.SerializeObject(post), Encoding.UTF8, "application/json"));
+
+    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
   }
 
   [Fact]
