@@ -1,1 +1,1 @@
-{"sonar.exclusions":[],"sonar.global.exclusions":[],"sonar.inclusions":[]}
+{"sonar.exclusions":["**/Migrations/*"],"sonar.global.exclusions":[],"sonar.inclusions":[]}
