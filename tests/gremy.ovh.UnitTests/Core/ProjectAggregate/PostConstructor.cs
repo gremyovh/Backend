@@ -4,11 +4,11 @@ using Xunit;
 namespace gremy.ovh.UnitTests.Core.ProjectAggregate;
 public class PostConstructor
 {
-  private string _testTitle = "Test title";
-  private string _testBody = "Test body";
+  private  readonly string _testTitle = "Test title";
+  private readonly string _testBody = "Test body";
   private Post? _testPost;
 
-  private Post CreateProject()
+  private Post CreatePost()
   {
     return new Post(_testTitle, _testBody);
   }
@@ -16,7 +16,7 @@ public class PostConstructor
   [Fact]
   public void InitializesTitle()
   {
-    _testPost = CreateProject();
+    _testPost = CreatePost();
 
     Assert.Equal(_testTitle, _testPost.Title);
   }
@@ -24,7 +24,7 @@ public class PostConstructor
   [Fact]
   public void InitializesBody()
   {
-    _testPost = CreateProject();
+    _testPost = CreatePost();
 
     Assert.Equal(_testBody, _testPost.Body);
   }

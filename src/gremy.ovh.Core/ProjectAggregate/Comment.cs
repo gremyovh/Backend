@@ -1,4 +1,5 @@
-﻿using gremy.ovh.SharedKernel;
+﻿using Ardalis.GuardClauses;
+using gremy.ovh.SharedKernel;
 using Newtonsoft.Json;
 
 namespace gremy.ovh.Core.ProjectAggregate;
@@ -10,6 +11,14 @@ public class Comment : EntityBase
   public string Body { get; set; }
   public DateTime CreationDate { get; }
   public Post Post { get; set; }
+
+  public void Update(
+    string? title,
+    string? body)
+  {
+    Title = Guard.Against.NullOrEmpty(title);
+    Body = Guard.Against.NullOrEmpty(body);
+  }
 
   public Comment(string title, string body)
   {
