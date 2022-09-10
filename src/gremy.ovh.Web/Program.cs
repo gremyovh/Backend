@@ -3,8 +3,8 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using gremy.ovh.Core;
 using gremy.ovh.Infrastructure;
+using gremy.ovh.Infrastructure.Config;
 using gremy.ovh.Infrastructure.Data;
-using gremy.ovh.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -15,7 +15,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
-string connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
+string connectionString = AppConfiguration.GetDatabaseConfig(builder.Environment.EnvironmentName == "Development").GetConnectionString();
 
 builder.Services.AddDbContext(connectionString);
 
