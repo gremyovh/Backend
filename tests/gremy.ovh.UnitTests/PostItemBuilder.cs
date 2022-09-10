@@ -25,8 +25,7 @@ public class PostItemBuilder
 
   public PostItemBuilder WithDefaultValues()
   {
-    _post = new Post() { Id = 1, Title = "Test title", Body = "Test body" };
-
+    _post = new() { Id = 1, Title = "Test title", Body = "Test body" };
     return this;
   }
 
