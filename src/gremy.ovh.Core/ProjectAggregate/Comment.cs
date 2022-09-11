@@ -16,10 +16,12 @@ public class Comment : EntityBase, IAggregateRoot
 
   public void Update(
     string? title,
-    string? body)
+    string? body,
+    int postId)
   {
     Title = Guard.Against.NullOrEmpty(title);
     Body = Guard.Against.NullOrEmpty(body);
+    PostId = Guard.Against.NegativeOrZero(postId);
   }
 
   public Comment(string title, string body, int postId)

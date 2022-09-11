@@ -5,11 +5,12 @@ namespace gremy.ovh.UnitTests.Core.ProjectAggregate;
 public class ContentDataConstructor
 {
   private readonly string _testFileName = "filename.extension";
+  private readonly int _testPostId = 1;
   private ContentData? _testContentData;
 
   private ContentData CreateContentData()
   {
-    return new ContentData(_testFileName);
+    return new ContentData(_testFileName, _testPostId);
   }
 
   [Fact]
