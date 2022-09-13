@@ -27,7 +27,7 @@ public class PostGetById : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   [Fact]
   public async Task ReturnOkGetById()
   {
-    var result = await _client.GetAndDeserializeAsync<GetByIdPostResponse>(GetByIdPostRequest.BuildRoute(1));
+    var result = await _client.GetAndDeserializeAsync<GetByIdPostResponse>(GetByIdPostRequest.BuildRoute(SeedData.TestPost1.Id));
 
     Assert.Equal(1, result.Post.Id);
     Assert.Equal(SeedData.TestPost1.Title, result.Post.Title);

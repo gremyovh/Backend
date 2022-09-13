@@ -1,4 +1,6 @@
-﻿using Ardalis.GuardClauses;
+﻿#nullable disable
+
+using Ardalis.GuardClauses;
 using gremy.ovh.SharedKernel;
 using gremy.ovh.SharedKernel.Interfaces;
 using Newtonsoft.Json;
@@ -29,9 +31,8 @@ public class Comment : EntityBase, IAggregateRoot
     Title = title;
     Body = body;
     PostId = postId;
-    Post = new Post();
   }
-  public Comment() : this(string.Empty, string.Empty, -1)
+  public Comment() : this(string.Empty, string.Empty, 0)
   {
   }
 }

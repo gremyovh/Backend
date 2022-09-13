@@ -6,5 +6,5 @@ public record CommentRecord
     string Title,
     string Body,
     DateTime creationDate,
-    int postId
+    int PostId
   );

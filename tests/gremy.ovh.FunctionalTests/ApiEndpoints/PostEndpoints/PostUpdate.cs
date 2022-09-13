@@ -49,7 +49,7 @@ public class PostUpdate : IClassFixture<CustomWebApplicationFactory<WebMarker>>
   {
     var post = new Post("Test rename title", "Test rename body")
     {
-      Id = 1,
+      Id = SeedData.TestPost1.Id,
     };
     var response = await _client.PutAndDeserializeAsync<UpdatePostResponse>(
       UpdatePostRequest.Route,
