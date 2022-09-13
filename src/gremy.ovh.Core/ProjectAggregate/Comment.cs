@@ -1,4 +1,6 @@
-﻿using Ardalis.GuardClauses;
+﻿#nullable disable
+
+using Ardalis.GuardClauses;
 using gremy.ovh.SharedKernel;
 using gremy.ovh.SharedKernel.Interfaces;
 using Newtonsoft.Json;
@@ -16,10 +18,12 @@ public class Comment : EntityBase, IAggregateRoot
 
   public void Update(
     string? title,
-    string? body)
+    string? body,
+    int postId)
   {
     Title = Guard.Against.NullOrEmpty(title);
     Body = Guard.Against.NullOrEmpty(body);
+    PostId = Guard.Against.NegativeOrZero(postId);
   }
 
   public Comment(string title, string body, int postId)
@@ -27,9 +31,8 @@ public class Comment : EntityBase, IAggregateRoot
     Title = title;
     Body = body;
     PostId = postId;
-    Post = new Post();
   }
-  public Comment() : this(string.Empty, string.Empty, -1)
+  public Comment() : this(string.Empty, string.Empty, 0)
   {
   }
 }

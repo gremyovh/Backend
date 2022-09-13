@@ -26,8 +26,8 @@ public class Post : EntityBase, IAggregateRoot
   {
     Title = title;
     Body = body;
-    Comments = Array.Empty<Comment>();
-    Data = Array.Empty<ContentData>();
+    Comments = new List<Comment>();
+    Data = new List<ContentData>();
   }
   public Post()
     : this(string.Empty, string.Empty)

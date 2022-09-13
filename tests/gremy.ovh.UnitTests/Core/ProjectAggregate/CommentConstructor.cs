@@ -6,11 +6,12 @@ public class CommentConstructor
 {
   private readonly string _testTitle = "Test title";
   private readonly string _testBody = "Test body";
+  private readonly int _testPostId = 1;
   private Comment? _testComment;
 
   private Comment CreateComment()
   {
-    return new Comment(_testTitle, _testBody);
+    return new Comment(_testTitle, _testBody, _testPostId);
   }
 
   [Fact]

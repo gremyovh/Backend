@@ -66,6 +66,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
         services.AddDbContext<AppDbContext>(options =>
         {
           options.UseInMemoryDatabase(inMemoryCollectionName);
+          options.EnableSensitiveDataLogging();
         });
       });
   }
