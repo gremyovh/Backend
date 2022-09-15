@@ -1,0 +1,19 @@
+name: Nuget_Cache
+
+on:
+  push:
+    branches: "**"
+  pull_request:
+    branches: "**"
+
+jobs:
+  get_nuget:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/cache@v1
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
