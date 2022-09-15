@@ -1,4 +1,4 @@
-name: Build
+name: sonarqube
 on:
   push:
     branches:
@@ -45,6 +45,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"gremyovh_Backend_AYLRnYEqHPsTf5RHvFiv" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          dotnet build --no-incremental
+          dotnet restore
+          dotnet build --no-incremental --no-restore
           dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

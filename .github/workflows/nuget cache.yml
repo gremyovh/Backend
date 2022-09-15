@@ -1,0 +1,27 @@
+name: nuget cache
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: "main"
+
+jobs:
+  get_nuget:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: 'latest'
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+      - name: NuGet Restore
+        run: nuget restore gremy.ovh.sln -LockedMode
+
+  call-workflow:
+    needs: [get_nuget]
+    uses: ./.github/workflows/build and test.yml
