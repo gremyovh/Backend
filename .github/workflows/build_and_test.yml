@@ -1,6 +1,7 @@
 name: Build_And_Test
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [Nuget_Cache]
     types:
