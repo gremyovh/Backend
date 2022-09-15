@@ -1,6 +1,8 @@
 ﻿#nullable disable
 
-namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+using gremy;
+
+namespace gremy.ovh.Web.Endpoints.PostEndpoints.CRUD;
 
 public class CreatePostResponse
 {

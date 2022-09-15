@@ -3,7 +3,7 @@ using System.Text;
 using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.Web;
-using gremy.ovh.Web.Endpoints.CommentEndpoints;
+using gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 using Newtonsoft.Json;
 using Xunit;
 

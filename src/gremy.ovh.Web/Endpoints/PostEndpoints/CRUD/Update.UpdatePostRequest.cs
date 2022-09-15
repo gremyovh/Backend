@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+namespace gremy.ovh.Web.Endpoints.PostEndpoints.CRUD;
 
 public class UpdatePostRequest
 {

@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace gremy.ovh.Web.Endpoints.CommentEndpoints;
+namespace gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 public class UpdateCommentRequest
 {

@@ -4,7 +4,7 @@ using gremy.ovh.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace gremy.ovh.Web.Endpoints.CommentEndpoints;
+namespace gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 public class List : EndpointBaseAsync
   .WithoutRequest

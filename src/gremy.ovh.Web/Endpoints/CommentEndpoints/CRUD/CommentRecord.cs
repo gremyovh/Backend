@@ -1,4 +1,4 @@
-﻿namespace gremy.ovh.Web.Endpoints.CommentEndpoints;
+﻿namespace gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 public record CommentRecord
   (

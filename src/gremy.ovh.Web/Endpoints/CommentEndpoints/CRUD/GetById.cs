@@ -5,7 +5,7 @@ using gremy.ovh.Web.Endpoints.PostEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace gremy.ovh.Web.Endpoints.CommentEndpoints;
+namespace gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 public class GetById : EndpointBaseAsync
   .WithRequest<GetByIdCommentRequest>

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Ardalis.HttpClientTestExtensions;
 using gremy.ovh.Web;
-using gremy.ovh.Web.Endpoints.CommentEndpoints;
+using gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 using Xunit;
 
 namespace gremy.ovh.FunctionalTests.ApiEndpoints.CommentEndpoints;

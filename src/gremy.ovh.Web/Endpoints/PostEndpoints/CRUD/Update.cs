@@ -4,7 +4,7 @@ using gremy.ovh.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+namespace gremy.ovh.Web.Endpoints.PostEndpoints.CRUD;
 
 public class Update : EndpointBaseAsync
   .WithRequest<UpdatePostRequest>
