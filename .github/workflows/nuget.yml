@@ -1,4 +1,4 @@
-name: nuget_cache
+name: nuget
 
 on:
   workflow_dispatch:
