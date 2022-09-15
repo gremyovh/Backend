@@ -17,7 +17,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --verbosity quiet
+      run: dotnet build --no-restore --noConsoleLogger
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
@@ -34,7 +34,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --verbosity quiet
+      run: dotnet build --no-restore --noConsoleLogger
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
@@ -51,6 +51,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --verbosity quiet
+      run: dotnet build --no-restore --noConsoleLogger
     - name: Test
       run: dotnet test --no-build --verbosity normal
