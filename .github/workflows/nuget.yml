@@ -22,4 +22,4 @@ jobs:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
       - name: NuGet Restore
-        run: nuget restore gremy.ovh.sln --no-restore
+        run: nuget restore gremy.ovh.sln --locked-mode
