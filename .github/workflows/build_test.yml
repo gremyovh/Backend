@@ -1,7 +1,6 @@
 name: build_test
 
 on:
-  workflow_dispatch:
   workflow_run:
     workflows: [nuget_cache]
     types:
