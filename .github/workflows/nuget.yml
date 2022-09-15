@@ -25,4 +25,5 @@ jobs:
         run: nuget restore gremy.ovh.sln -LockedMode
 
   call-workflow:
+    needs: [get_nuget]
     uses: ./.github/workflows/build and test.yml
