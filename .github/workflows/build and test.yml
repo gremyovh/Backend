@@ -1,8 +1,10 @@
 name: build and test
 
 on:
-  push:
-    branches: "**"
+  workflow_run:
+    workflows: [nuget]
+    types:
+      - completed
 
 jobs:
   build:
