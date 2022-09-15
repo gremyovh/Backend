@@ -2,7 +2,7 @@ name: Build_And_Test
 
 on:
   workflow_run:
-    workflows: "Nuget_Cache"
+    workflows: [Nuget_Cache]
     types:
       - completed
 
