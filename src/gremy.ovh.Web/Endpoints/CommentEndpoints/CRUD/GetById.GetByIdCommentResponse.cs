@@ -1,6 +1,8 @@
 ﻿#nullable disable
 
-namespace gremy.ovh.Web.Endpoints.CommentEndpoints;
+using gremy;
+
+namespace gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 public class GetByIdCommentResponse
 {

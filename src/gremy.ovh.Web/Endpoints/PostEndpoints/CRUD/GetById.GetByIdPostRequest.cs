@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#nullable disable
 
-namespace gremy.ovh.Web.Endpoints.PostEndpoints;
+using System.ComponentModel.DataAnnotations;
 
-public class DeletePostRequest
+namespace gremy.ovh.Web.Endpoints.PostEndpoints.CRUD;
+
+public class GetByIdPostRequest
 {
   public const string Route = "/Posts/{PostId:int}";
   public static string BuildRoute(int projectId) => Route.Replace("{PostId:int}", projectId.ToString());

@@ -2,7 +2,7 @@
 using gremy.ovh.Web;
 using System.Net;
 using Xunit;
-using gremy.ovh.Web.Endpoints.CommentEndpoints;
+using gremy.ovh.Web.Endpoints.CommentEndpoints.CRUD;
 
 namespace gremy.ovh.FunctionalTests.ApiEndpoints.CommentEndpoints;
 
