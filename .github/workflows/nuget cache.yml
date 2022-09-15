@@ -3,9 +3,9 @@ name: nuget cache
 on:
   workflow_dispatch:
   push:
-    branches: "**"
+    branches: "!master"
   pull_request:
-    branches: "**"
+    branches: "master"
 
 jobs:
   get_nuget:
