@@ -23,3 +23,6 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
       - name: NuGet Restore
         run: nuget restore gremy.ovh.sln -LockedMode
+
+  call-workflow:
+    uses: ./.github/workflows/build and test.yml
