@@ -54,7 +54,3 @@ jobs:
       run: dotnet build --no-restore --verbosity quiet
     - name: Test
       run: dotnet test --no-build --verbosity normal
-
-  call-workflow:
-    needs: [build_linux,build_windows,build_macos]
-    uses: ./.github/workflows/sonarqube.yml
