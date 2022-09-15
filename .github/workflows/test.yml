@@ -1,8 +1,8 @@
-name: build_test
+name: test
 
 on:
   workflow_run:
-    workflows: [nuget_cache]
+    workflows: [nuget]
     types:
       - completed
 
