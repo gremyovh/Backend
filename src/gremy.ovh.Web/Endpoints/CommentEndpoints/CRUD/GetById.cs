@@ -25,7 +25,7 @@ public class GetById : EndpointBaseAsync
     Summary = "Gets one Comment",
     Description = "Gets one Comment",
     OperationId = "Comment.GetById",
-    Tags = new[] { "CommentEndpoints" })
+    Tags = new[] { "Comment" })
   ]
   public override async Task<ActionResult<GetByIdCommentResponse>> HandleAsync(
     [FromRoute] GetByIdCommentRequest request,

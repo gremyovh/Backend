@@ -25,7 +25,7 @@ public class Update : EndpointBaseAsync
     Summary = "Update a Post",
     Description = "Update a Post",
     OperationId = "Post.Update",
-    Tags = new[] { "ProjectEndpoints" })
+    Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult<UpdatePostResponse>> HandleAsync(
     UpdatePostRequest request,

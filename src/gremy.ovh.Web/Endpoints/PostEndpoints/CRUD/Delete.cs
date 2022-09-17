@@ -24,7 +24,7 @@ public class Delete : EndpointBaseAsync
     Summary = "Delete a Post",
     Description = "Delete a Post",
     OperationId = "Post.Delete",
-    Tags = new[] { "ProjectEndpoints" })
+    Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult> HandleAsync(
     [FromRoute] DeletePostRequest request,

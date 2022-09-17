@@ -27,7 +27,7 @@ public class Create : EndpointBaseAsync
     Summary = "Creates a new Comment",
     Description = "Create a new Comment",
     OperationId = "Comment.Create",
-    Tags = new[] { "CommentEndpoints" })]
+    Tags = new[] { "Comment" })]
   public override async Task<ActionResult<CreateCommentResponse>> HandleAsync(
     CreateCommentRequest request,
     CancellationToken cancellationToken = new())

@@ -24,7 +24,7 @@ public class Create : EndpointBaseAsync
     Summary = "Creates a new Post",
     Description = "Creates a new Post",
     OperationId = "Post.Create",
-    Tags = new[] { "ProjectEndpoints" })
+    Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult<CreatePostResponse>> HandleAsync(
     CreatePostRequest request,

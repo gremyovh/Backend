@@ -24,7 +24,7 @@ public class GetById : EndpointBaseAsync
     Summary = "Gets one post",
       Description = "Gets one post",
       OperationId = "Post.Get",
-      Tags = new[] { "ProjectEndpoints" })
+      Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult<GetByIdPostResponse>> HandleAsync(
     [FromRoute] GetByIdPostRequest request,

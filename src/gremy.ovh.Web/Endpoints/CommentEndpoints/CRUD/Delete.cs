@@ -24,7 +24,7 @@ public class Delete : EndpointBaseAsync
     Summary = "Delete a Comment",
     Description = "Delete a Comment",
     OperationId = "Comment.Delete",
-    Tags = new[] { "CommentEndpoints" })
+    Tags = new[] { "Comment" })
   ]
   public override async Task<ActionResult> HandleAsync(
     [FromRoute] DeleteCommentRequest request,

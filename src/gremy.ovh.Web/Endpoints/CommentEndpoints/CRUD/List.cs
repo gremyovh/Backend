@@ -23,7 +23,7 @@ public class List : EndpointBaseAsync
     Summary = "Gets a list of all Comments",
       Description = "Gets a list of all Comments",
       OperationId = "Comment.List",
-      Tags = new[] { "CommentEndpoints" })
+      Tags = new[] { "Comment" })
   ]
   public override async Task<ActionResult<ListCommentResponse>> HandleAsync(
     CancellationToken cancellationToken = new())

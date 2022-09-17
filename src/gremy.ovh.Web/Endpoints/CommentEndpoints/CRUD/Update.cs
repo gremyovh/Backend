@@ -28,7 +28,7 @@ public class Update : EndpointBaseAsync
     Summary = "Update a Comment",
     Description = "Update a Comment",
     OperationId = "Comment.Update",
-    Tags = new[] { "CommentEndpoints" })
+    Tags = new[] { "Comment" })
   ]
   public override async Task<ActionResult<UpdateCommentResponse>> HandleAsync(
     UpdateCommentRequest request,
