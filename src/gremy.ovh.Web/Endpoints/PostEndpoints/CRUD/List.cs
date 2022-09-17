@@ -1,4 +1,5 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using System.Net.Mime;
+using Ardalis.ApiEndpoints;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,14 @@ public class List : EndpointBaseAsync
   }
 
   [HttpGet(ListPostRequest.Route)]
+  [Produces(MediaTypeNames.Application.Json)]
+  [Consumes(MediaTypeNames.Application.Json)]
   [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
     Summary = "Gets a list of all Posts",
       Description = "Gets a list of all Posts",
       OperationId = "Post.List",
-      Tags = new[] { "ProjectEndpoints" })
+      Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult<ListPostResponse>> HandleAsync(
     CancellationToken cancellationToken = new())

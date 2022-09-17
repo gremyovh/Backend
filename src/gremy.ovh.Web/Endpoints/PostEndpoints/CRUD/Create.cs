@@ -1,4 +1,5 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using System.Net.Mime;
+using Ardalis.ApiEndpoints;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -18,13 +19,15 @@ public class Create : EndpointBaseAsync
   }
 
   [HttpPost(CreatePostRequest.Route)]
+  [Produces(MediaTypeNames.Application.Json)]
+  [Consumes(MediaTypeNames.Application.Json)]
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
   [ProducesResponseType(StatusCodes.Status201Created)]
   [SwaggerOperation(
     Summary = "Creates a new Post",
     Description = "Creates a new Post",
     OperationId = "Post.Create",
-    Tags = new[] { "ProjectEndpoints" })
+    Tags = new[] { "Project" })
   ]
   public override async Task<ActionResult<CreatePostResponse>> HandleAsync(
     CreatePostRequest request,

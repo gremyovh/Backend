@@ -1,7 +1,7 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using System.Net.Mime;
+using Ardalis.ApiEndpoints;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.SharedKernel.Interfaces;
-using gremy.ovh.Web.Endpoints.PostEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -19,13 +19,15 @@ public class GetById : EndpointBaseAsync
   }
 
   [HttpGet(GetByIdCommentRequest.Route)]
+  [Produces(MediaTypeNames.Application.Json)]
+  [Consumes(MediaTypeNames.Application.Json)]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status200OK)]
   [SwaggerOperation(
     Summary = "Gets one Comment",
     Description = "Gets one Comment",
     OperationId = "Comment.GetById",
-    Tags = new[] { "CommentEndpoints" })
+    Tags = new[] { "Comment" })
   ]
   public override async Task<ActionResult<GetByIdCommentResponse>> HandleAsync(
     [FromRoute] GetByIdCommentRequest request,
