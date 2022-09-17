@@ -2,7 +2,6 @@
 using Ardalis.ApiEndpoints;
 using gremy.ovh.Core.ProjectAggregate;
 using gremy.ovh.SharedKernel.Interfaces;
-using gremy.ovh.Web.Endpoints.PostEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
